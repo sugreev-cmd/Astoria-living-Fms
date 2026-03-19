@@ -1740,8 +1740,7 @@ function buildPC(){
   initSupabase(url, key);
   document.getElementById('setupPage').style.display = 'none';
   showLoginPage();
-  var saved = localStorage.getItem('dfms_role');
-  if (saved && PASSWORDS[saved]) { currentRole = saved; enterApp(); }
+  // No auto-login — user must select role and enter password every time
 })();
 
 function quickEditAction(projId){
