@@ -555,18 +555,16 @@ function showLoginPage() {
   document.getElementById('loginPage').classList.add('active');
 }
 
-// Auto-connect if saved
+// Auto-connect — credentials hardcoded, setup screen skip
 (function() {
-  var url = localStorage.getItem(SB_URL_KEY);
-  var key = localStorage.getItem(SB_KEY_KEY);
-  if (url && key) {
-    initSupabase(url, key);
-    document.getElementById('setupPage').style.display = 'none';
-    showLoginPage();
-    // Auto login if role saved
-    var saved = sessionStorage.getItem('dfms_role');
-    if (saved && PASSWORDS[saved]) { currentRole = saved; enterApp(); }
-  }
+  var url = 'https://hslemsaokgvhfqynntst.supabase.co';
+  var key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzbGVtc2Fva2d2aGZxeW5udHN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTk0NjIsImV4cCI6MjA4OTQ3NTQ2Mn0.65EM8ThzBcZDIJH0wtI3txDJj1K_nLkqGcLi1cuM6Oo';
+  initSupabase(url, key);
+  document.getElementById('setupPage').style.display = 'none';
+  showLoginPage();
+  // Auto login if role saved
+  var saved = sessionStorage.getItem('dfms_role');
+  if (saved && PASSWORDS[saved]) { currentRole = saved; enterApp(); }
 })();
 
 // ═══════════════════════════════════════════════
