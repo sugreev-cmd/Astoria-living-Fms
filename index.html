@@ -555,18 +555,6 @@ function showLoginPage() {
   document.getElementById('loginPage').classList.add('active');
 }
 
-// Auto-connect — credentials hardcoded, setup screen skip
-(function() {
-  var url = 'https://hslemsaokgvhfqynntst.supabase.co';
-  var key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzbGVtc2Fva2d2aGZxeW5udHN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTk0NjIsImV4cCI6MjA4OTQ3NTQ2Mn0.65EM8ThzBcZDIJH0wtI3txDJj1K_nLkqGcLi1cuM6Oo';
-  initSupabase(url, key);
-  document.getElementById('setupPage').style.display = 'none';
-  showLoginPage();
-  // Auto login if role saved
-  var saved = localStorage.getItem('dfms_role');
-  if (saved && PASSWORDS[saved]) { currentRole = saved; enterApp(); }
-})();
-
 // ═══════════════════════════════════════════════
 // CONFIG
 // ═══════════════════════════════════════════════
@@ -1744,6 +1732,17 @@ function buildPC(){
       +'</div></div>';
   }).join(''):'<div style="color:var(--td);text-align:center;padding:20px;font-size:12px">✅ Is hafte koi due stage nahi</div>';
 }
+
+// Auto-connect — credentials hardcoded, setup screen skip
+(function() {
+  var url = 'https://hslemsaokgvhfqynntst.supabase.co';
+  var key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzbGVtc2Fva2d2aGZxeW5udHN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTk0NjIsImV4cCI6MjA4OTQ3NTQ2Mn0.65EM8ThzBcZDIJH0wtI3txDJj1K_nLkqGcLi1cuM6Oo';
+  initSupabase(url, key);
+  document.getElementById('setupPage').style.display = 'none';
+  showLoginPage();
+  var saved = localStorage.getItem('dfms_role');
+  if (saved && PASSWORDS[saved]) { currentRole = saved; enterApp(); }
+})();
 
 function quickEditAction(projId){
   var p=projects.find(function(x){return x.id===projId;});
