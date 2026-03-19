@@ -855,7 +855,7 @@ function doLogin(){
   var btn=document.getElementById('enterBtn');btn.textContent='Checking...';btn.style.opacity='.7';
   setTimeout(function(){
     if(pass===PASSWORDS[selRole]){
-      currentRole=selRole;localStorage.setItem('dfms_role',selRole);
+      currentRole=selRole;sessionStorage.setItem('dfms_role',selRole);
       btn.textContent='✓ Welcome!';btn.style.background='linear-gradient(135deg,#3a8a5a,#4eb87a)';
       setTimeout(enterApp,400);
     } else {
@@ -878,7 +878,7 @@ function enterApp(){
 }
 
 document.getElementById('logoutBtn').addEventListener('click',function(){
-  localStorage.removeItem('dfms_role');currentRole=null;
+  sessionStorage.removeItem('dfms_role');currentRole=null;
   document.getElementById('appPage').classList.remove('active');
   document.getElementById('loginPage').classList.add('active');
   document.getElementById('passInput').value='';selRole=null;
@@ -1740,7 +1740,8 @@ function buildPC(){
   initSupabase(url, key);
   document.getElementById('setupPage').style.display = 'none';
   showLoginPage();
-  // No auto-login — user must select role and enter password every time
+  var saved = sessionStorage.getItem('dfms_role');
+  if (saved && PASSWORDS[saved]) { currentRole = saved; enterApp(); }
 })();
 
 function quickEditAction(projId){
